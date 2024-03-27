@@ -18,6 +18,4 @@ jobs:
         with:
           node-version: 16.x
       - name: run teste build
-        run: |
-          npm install
-          cd ./frontEnd
+        run: cd ./frontEnd
