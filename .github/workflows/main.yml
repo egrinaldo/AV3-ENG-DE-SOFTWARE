@@ -20,5 +20,6 @@ jobs:
       - name: run teste build
         run: |
           cd ./frontEnd
+          npm install
           npm test
          
