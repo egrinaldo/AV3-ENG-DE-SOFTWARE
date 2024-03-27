@@ -21,4 +21,4 @@ jobs:
         run: |
           cd ./frontEnd
           npm test
-          npm run dev
+         
