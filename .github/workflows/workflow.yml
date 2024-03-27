@@ -2,9 +2,9 @@ name: Av3 Action
 
 on: 
   push:
-    branches: [ teste, main ]
+    branches: [ dev, main ]
   pull_request:
-    branches: [ teste, main ]
+    branches: [ dev, main ]
     
 
 jobs:
@@ -19,5 +19,4 @@ jobs:
           node-version: 16.x
       - name: run install, build and test
         run: |
-          npm install
           cd ./frontEnd 
