@@ -1,5 +1,3 @@
-
-
 name: Av3 Action
 
 on: 
@@ -11,7 +9,7 @@ on:
 
 jobs:
   Av3-Action:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -22,4 +20,3 @@ jobs:
       - name: run teste build
         run: |
           cd ./frontEnd
-        
