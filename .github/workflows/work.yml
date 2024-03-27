@@ -1,29 +1,25 @@
-name: CI
+name: Av3 Action
 
-on:
+on: 
   push:
-    branches: [ main, dev]
+    branches: [ teste, main ]
   pull_request:
-    branches: [ main, dev ]
+    branches: [ teste, main ]
+    
 
 jobs:
-  build:
-    runs-on: self-hosted
+  Av3-Action:
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Using Node.js 16.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16.x
-    - name: Entrar no dir
-      run: cd frontEnd
-    - name: Install Dependencies
-      run: npm install
-    - name: Run Tests
-      run: npm test
-    - name: Build
-      run: npm run build
+      - uses: actions/checkout@v3
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: run teste build
+        run: |
+          cd ./frontEnd
 
 
 
