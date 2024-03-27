@@ -1,0 +1,23 @@
+name: Av3 Action
+
+on: 
+  push:
+    branches: [ teste, main ]
+  pull_request:
+    branches: [ teste, main ]
+    
+
+jobs:
+  Av3-Action:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: run install, build and test
+        run: |
+          npm install
+          cd ./frontEnd 
