@@ -17,7 +17,7 @@ jobs:
       with:
         node-version: 16.x
     - name: Entrar no dir
-      run: cd ./frontEnd
+      run: cd frontEnd
     - name: Install Dependencies
       run: npm install
     - name: Run Tests
