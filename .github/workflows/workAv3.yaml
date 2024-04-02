@@ -22,10 +22,3 @@ jobs:
           npm install
           npm run build
           npm test
-
-      - name: new teste
-        run: |
-          cd frontEnd
-          npm install
-          npm run build
-          npm test
