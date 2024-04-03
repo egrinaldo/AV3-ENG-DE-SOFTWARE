@@ -33,6 +33,7 @@ jobs:
       - name: run teste
         run: |
           cd frontEnd
+          npm install
           npm test
 
   build:
