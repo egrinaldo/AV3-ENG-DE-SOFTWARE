@@ -45,5 +45,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: run teste
-        run:  npm run build
+      - name: run build
+        run: |
+         cd frontEnd
+         npm run build
