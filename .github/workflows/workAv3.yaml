@@ -52,7 +52,7 @@ jobs:
          npm run build
 
 
-  produção:
+  producao:
     runs-on: windows-latest
     needs: [Carregamento-maquina,teste,buld]
     steps: 
