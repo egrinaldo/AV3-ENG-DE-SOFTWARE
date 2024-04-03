@@ -22,11 +22,3 @@ jobs:
           npm install
           npm run build
           npm test
-  Teste:
-    runs-on: windows-latest
-      - uses: actions/checkout@v4
-      - name:run teste
-  Build:
-    runs-on: windows-latest
-      - uses: actions/checkout@v4
-      - name: run build 
