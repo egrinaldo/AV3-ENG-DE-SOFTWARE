@@ -26,6 +26,10 @@ jobs:
     needs: [Carregamento-maquina]
     steps: 
       - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
       - name: run teste
         run: |
           cd frontEnd
@@ -36,5 +40,9 @@ jobs:
     needs: [Carregamento-maquina,Teste]
     steps: 
       - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
       - name: run teste
         run:  npm run build
