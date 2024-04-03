@@ -20,5 +20,19 @@ jobs:
         run: |
           cd frontEnd
           npm install
-          npm run build
-          npm test
+          
+  Teste:
+    runs-on: windows-latest
+    needs: [Carregamento-maquina]
+    steps: 
+      - uses: actions/checkout@v4
+      - name: run teste
+        run:  npm test
+
+  build:
+    runs-on: windows-latest
+    needs: [Carregamento-maquina,Teste]
+    steps: 
+      - uses: actions/checkout@v4
+      - name: run teste
+        run:  npm run build
