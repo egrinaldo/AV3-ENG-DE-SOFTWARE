@@ -54,7 +54,7 @@ jobs:
 
   producao:
     runs-on: windows-latest
-    needs: [Carregamento-maquina,teste,buld]
+    needs: [Carregamento-maquina,teste,build]
     steps: 
       - uses: actions/checkout@v4
       - name: Using Node.js
