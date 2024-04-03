@@ -1,4 +1,4 @@
-name: Av3 CI Action
+name: FrontEnd 
 
 on: 
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ dev, main ]
 
 jobs:
-  CI-Av:
+  Carregamento-maquina:
     runs-on: windows-latest
 
     steps: 
@@ -16,9 +16,37 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: run install, build and teste
+      - name: run install
         run: |
           cd frontEnd
           npm install
-          npm run build
+          
+  Teste:
+    runs-on: windows-latest
+    needs: [Carregamento-maquina]
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: run teste
+        run: |
+          cd frontEnd
+          npm install
           npm test
+
+  build:
+    runs-on: windows-latest
+    needs: [Carregamento-maquina,Teste]
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: run build
+        run: |
+         cd frontEnd
+         npm install
+         npm run build
