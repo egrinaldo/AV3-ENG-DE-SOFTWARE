@@ -16,12 +16,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: run install
+      - name: Instalar dependências
         run: |
           cd frontEnd
           npm install
           
-  Teste:
+  teste:
     runs-on: windows-latest
     needs: [Carregamento-maquina]
     steps: 
@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: run teste
+      - name: Executar testes
         run: |
           cd frontEnd
           npm install
@@ -38,15 +38,33 @@ jobs:
 
   build:
     runs-on: windows-latest
-    needs: [Carregamento-maquina,Teste]
+    needs: [Carregamento-maquina,teste]
     steps: 
       - uses: actions/checkout@v4
       - name: Using Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-      - name: run build
+      - name: Executar build
         run: |
          cd frontEnd
          npm install
          npm run build
+
+
+  produção:
+    runs-on: windows-latest
+    needs: [Carregamento-maquina,teste,buld]
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Enviar para produção
+        run: |
+         cd frontEnd
+         npm install 
+         git checkout main
+         git merge teste --no-edit
+         sgit push origin main
