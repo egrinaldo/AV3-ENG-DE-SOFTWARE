@@ -27,7 +27,9 @@ jobs:
     steps: 
       - uses: actions/checkout@v4
       - name: run teste
-        run:  npm test
+        run: |
+          cd frontEnd
+          npm test
 
   build:
     runs-on: windows-latest
