@@ -99,5 +99,6 @@ export default {
 // type(scope? AQUI VOCÊ PODE ADICIONAR MAIS DADOS ESPECIFICOS SOBRE AS ALTERAÇÕES FEITAS): subject
 // body?
 // footer?
+// footer?
 
 
