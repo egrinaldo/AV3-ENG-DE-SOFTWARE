@@ -13,7 +13,16 @@ rules: {
       'chore', // Outras alterações que não modificam os arquivos de src ou test
       'revert' // Reversões de commits anteriores
     ]],
-
+    'scope-case': [2, 'always', 'lower-case'], // Define que o escopo deve estar em minúsculas
+    'subject-full-stop': [2, 'never', '.'], // Não permite ponto final no assunto
+    'subject-case': [2, 'never', ['sentence-case', 'start-case', 'pascal-case', 'upper-case']], // Define casos permitidos para o assunto
+    // Você pode adicionar mais regras aqui conforme necessário
+  
   }
 
 };
+
+// type(scope? AQUI VOCÊ PODE ADICIONAR MAIS DADOS ESPECIFICOS SOBRE AS ALTERAÇÕES FEITAS): subject
+// body?
+// footer?
+
