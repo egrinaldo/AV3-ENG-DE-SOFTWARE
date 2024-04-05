@@ -54,7 +54,7 @@ jobs:
           
   teste:
     runs-on: windows-latest
-    needs: [Carregamento-maquina]
+    needs: [commitlint,Carregamento-maquina]
     steps: 
       - uses: actions/checkout@v4
       - name: Using Node.js
