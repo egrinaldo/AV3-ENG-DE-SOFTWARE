@@ -1,4 +1,3 @@
-
 export default {
   extends: ["@commitlint/config-conventional"],
   parserPreset: "conventional-changelog-conventionalcommits",
@@ -49,50 +48,45 @@ export default {
             title: "Features(Características)",
             emoji: "✨",
           },
-
           fix: {
             description: "Uma correção de bug",
             title: "Bug Fixes(Bug Fixes)",
             emoji: "🐛",
           },
-
           docs: {
             description: "Mudança apenas na documentaçãos",
             title: "Documentation(Documentation)",
             emoji: "📚",
-
-            refactor: {
-              description:
-                "Uma alteração de código que não corrige um bug nem adiciona um recurso",
-              title: "Code Refactoring(Refatoração de código)",
-              emoji: "📦",
-            },
-
-            test: {
-              description:
-                "Adicionar testes ausentes ou corrigir testes existentes",
-              title: "Tests(Testes)",
-              emoji: "🚨",
-            },
-
-            build: {
-              description:
-                "Mudanças que afetam o sistema de compilação ou dependências externas (example scopes: gulp, broccoli, npm)",
-              title: "Builds(Construções)",
-              emoji: "🛠",
-            },
-            scope: {
-              description:
-                "Qual é o escopo desta mudança (por exemplo, componente ou nome do arquivo)",
-            },
-            body: {
-              description: "Escreva uma descrição curta e imperativa da mudança",
-            },
-            footer:{
-              description: 'Adicionar referências de problemas (por exemplo, "correção #123", "re #123".)',
-            },
+          },
+          refactor: {
+            description:
+              "Uma alteração de código que não corrige um bug nem adiciona um recurso",
+            title: "Code Refactoring(Refatoração de código)",
+            emoji: "📦",
+          },
+          test: {
+            description:
+              "Adicionar testes ausentes ou corrigir testes existentes",
+            title: "Tests(Testes)",
+            emoji: "🚨",
+          },
+          build: {
+            description:
+              "Mudanças que afetam o sistema de compilação ou dependências externas (example scopes: gulp, broccoli, npm)",
+            title: "Builds(Construções)",
+            emoji: "🛠",
           },
         },
+      },
+      scope: {
+        description:
+          "Qual é o escopo desta mudança (por exemplo, componente ou nome do arquivo)",
+      },
+      body: {
+        description: "Escreva uma descrição curta e imperativa da mudança",
+      },
+      footer:{
+        description: 'Adicionar referências de problemas (por exemplo, "correção #123", "re #123".)',
       },
     },
   },
