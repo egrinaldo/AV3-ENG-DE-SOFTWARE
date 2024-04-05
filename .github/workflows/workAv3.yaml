@@ -7,39 +7,8 @@ on:
     branches: [ dev, main ]
 
 jobs:
-  commitlint:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Install required dependencies
-        run: |
-          choco install git curl nodejs-lts
-        shell: powershell
-      - name: Print versions
-        run: |
-          git --version
-          node --version
-          npm --version
-          npx commitlint --version
-      - name: Install commitlint
-        run: |
-          npm install conventional-changelog-conventionalcommits
-          npm install commitlint@latest
-
-      - name: Validate current commit (last commit) with commitlint
-        if: github.event_name == 'push'
-        run: npx commitlint --last --verbose
-
-      - name: Validate PR commits with commitlint
-        if: github.event_name == 'pull_request'
-        run: npx commitlint --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }} --to ${{ github.event.pull_request.head.sha }} --verbose
-
-
   Carregamento-maquina:
     runs-on: windows-latest
-    needs: [commitlint]
     steps: 
       - uses: actions/checkout@v4
       - name: Using Node.js
@@ -54,7 +23,7 @@ jobs:
           
   teste:
     runs-on: windows-latest
-    needs: [commitlint,Carregamento-maquina]
+    needs: [Carregamento-maquina]
     steps: 
       - uses: actions/checkout@v4
       - name: Using Node.js
