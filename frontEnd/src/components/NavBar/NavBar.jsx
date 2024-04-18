@@ -1,8 +1,8 @@
 
 export const NavBar = () => {
     return(
-        <>
-        <h1>teste5</h1>
-       </>
+        <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
     )
 }
