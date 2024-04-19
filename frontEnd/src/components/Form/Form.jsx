@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { Select } from "../Select/Select"
-import { SelectEscola } from "../Select/SelectEscola"
-import axios from 'axios'; // Importe o Axios
+import axios from 'axios';
 
 export const Form = () => {
 
-      // Crie um estado para cada campo do formulário
+      // Estes campos irão criar um estado para cada campo do formulário
     const [escola, setEscola] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [bairro, setBairro] = useState('');
@@ -14,11 +12,11 @@ export const Form = () => {
     const [tipoEscola, setTipoEscola] = useState('');
     const [email, setEmail] = useState('');
 
-        // Função para lidar com o envio do formulário
+        // Esta variavel irá lidar com o envio do formulário
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Dados do formulário
+        // Esta variavel irá trazer os dados
         const formData = {
             escola,
             cnpj,
@@ -29,13 +27,16 @@ export const Form = () => {
             email
         };
 
-                // Enviar requisição POST para o servidor
+                // Este Campo irá fazer o envio dos dados adquiridos POST para o servidor db
         try {
             const response = await axios.post('http://localhost:8080/instituicao', formData);
             console.log(response.data);
+            
+           //Este comando irá recarregar a página automaticamente após o sucesso do preenchimento
             event.target.reset();
-            // Recarregar a página
             window.location.reload();
+
+            // Em caso de erro teremos este campo 
         } catch (error) {
             console.error(error);
         }
@@ -125,7 +126,15 @@ export const Form = () => {
                 Bairro
               </label>
               <div className="mt-2">
-                <Select value={bairro} onChange={e => setBairro(e.target.value)}/>
+              <input
+                  type="text"
+                  name="cep"
+                  id="cep"
+                  autoComplete="cep"
+                  value={bairro}
+                  onChange={e => setBairro(e.target.value)}
+                  className="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
 
@@ -149,10 +158,18 @@ export const Form = () => {
             
             <div className="sm:col-span-2 sm:col-start-1">
               <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                Tipo de Instituição
+               Tipo da Instituição Pública ou Privada
               </label>
               <div className="mt-2">
-                <SelectEscola value={tipoEscola} onChange={e => setTipoEscola(e.target.value)} />
+              <input
+                  type="text"
+                  name="cep"
+                  id="cep"
+                  autoComplete="cep"
+                  value={tipoEscola}
+                  onChange={e => setTipoEscola(e.target.value)}
+                  className="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
           </div>
