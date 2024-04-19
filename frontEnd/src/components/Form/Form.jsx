@@ -1,9 +1,49 @@
+import { useState } from 'react';
 import { Select } from "../Select/Select"
+import { SelectEscola } from "../Select/SelectEscola"
+import axios from 'axios'; // Importe o Axios
 
 export const Form = () => {
+
+      // Crie um estado para cada campo do formulário
+    const [escola, setEscola] = useState('');
+    const [cnpj, setCnpj] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [logradouro, setLogradouro] = useState('');
+    const [cep, setCep] = useState('');
+    const [tipoEscola, setTipoEscola] = useState('');
+    const [email, setEmail] = useState('');
+
+        // Função para lidar com o envio do formulário
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        // Dados do formulário
+        const formData = {
+            escola,
+            cnpj,
+            bairro,
+            logradouro,
+            cep,
+            tipoEscola,
+            email
+        };
+
+                // Enviar requisição POST para o servidor
+        try {
+            const response = await axios.post('http://localhost:8080/instituicao', formData);
+            console.log(response.data);
+            event.target.reset();
+            // Recarregar a página
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return(
         <>
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="space-y-12 p-6">
         <div className="border-b border-gray-900/10 pb-12">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Bem-vindo à página de cadastro do Projeto Escola de Campeões!</h2>
@@ -22,9 +62,11 @@ export const Form = () => {
                   <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">Instituição:</span>
                   <input
                     type="text"
-                    name="username"
-                    id="username"
+                    name="escola"
+                    id="escola"
                     autoComplete="username"
+                    value={escola}
+                    onChange={e => setEscola(e.target.value)}
                     className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
@@ -41,32 +83,17 @@ export const Form = () => {
                   <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">CNPJ:</span>
                   <input
                     type="text"
-                    name="username"
-                    id="username"
+                    name="cnpj"
+                    id="cnpj"
                     autoComplete="username"
+                    value={cnpj}
+                    onChange={e => setCnpj(e.target.value)}
                     className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                   />
                 </div>
                 
               </div>
             </div>
-
-            {/* <div className="col-span-full">
-              <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">
-                CNPJ Da Instituição
-              </label>
-              <div className="mt-2 ">
-              <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    autoComplete="username"
-                    className="block w-2/5 flex-1  border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
-                    placeholder="CNPJ"
-                  />
-              </div>
-              <p className="mt-3 text-sm leading-6 text-gray-600">Informe o CNPJ Valido da Instituição</p>
-            </div> */}
 
           </div>
         </div>
@@ -86,6 +113,8 @@ export const Form = () => {
                   name="logradouro"
                   id="logradouro"
                   autoComplete="street-address"
+                  value={logradouro}
+                  onChange={e => setLogradouro(e.target.value)}
                   className="block w-2/3 rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -96,7 +125,7 @@ export const Form = () => {
                 Bairro
               </label>
               <div className="mt-2">
-                <Select />
+                <Select value={bairro} onChange={e => setBairro(e.target.value)}/>
               </div>
             </div>
 
@@ -111,8 +140,19 @@ export const Form = () => {
                   name="cep"
                   id="cep"
                   autoComplete="cep"
+                  value={cep}
+                  onChange={e => setCep(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+              </div>
+            </div>
+            
+            <div className="sm:col-span-2 sm:col-start-1">
+              <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
+                Tipo de Instituição
+              </label>
+              <div className="mt-2">
+                <SelectEscola value={tipoEscola} onChange={e => setTipoEscola(e.target.value)} />
               </div>
             </div>
           </div>
@@ -131,6 +171,8 @@ export const Form = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   className="block w-2/3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -156,3 +198,4 @@ export const Form = () => {
         </>
     )
 }
+
