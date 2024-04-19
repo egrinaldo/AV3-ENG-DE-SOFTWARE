@@ -1,11 +1,11 @@
-import { NavBar } from "./components/NavBar/NavBar"
+import { Form } from "./components/Form/Form"
 
 
 function App() {
 
   return (
     <>
-    <NavBar />
+    <Form />
     </>
   )
 }
