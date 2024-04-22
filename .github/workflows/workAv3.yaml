@@ -25,9 +25,10 @@ jobs:
           COMMIT_MSG=$(git log --format=%B -n 1 ${{ github.event.after }})
           echo "Commit message: $COMMIT_MSG"
           if [[ ! "$COMMIT_MSG" =~ ^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?:.+$ ]]; then
-          echo "error: invalid commit message"
-          exit 1
+            echo "error: invalid commit message"
+            exit 1
           fi
+        shell: bash
           
   teste:
     runs-on: windows-latest
