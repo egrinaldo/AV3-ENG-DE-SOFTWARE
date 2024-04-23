@@ -1,4 +1,4 @@
-name: FrontEnd 
+  name: FrontEnd 
 
 on: 
   push:
@@ -20,10 +20,36 @@ jobs:
           cd frontEnd
           npm ci
           npm install
+      - name: Check commit title
+        run: |
+          COMMIT_MSG=$(git log --format=%B -n 1 ${{ github.event.after }})
+          echo "Commit message: $COMMIT_MSG"
+          if [[ ! "$COMMIT_MSG" =~ ^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?:.+$ ]]; then
+            echo "error: invalid commit message"
+            exit 1
+          fi
+        shell: bash
+
+
+  codigo-morto:
+    runs-on: windows-latest
+    needs: [Carregamento-maquina]
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with: 
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: executar ts-prune
+        run: npx ts-prune --error
           
   teste:
     runs-on: windows-latest
-    needs: [Carregamento-maquina]
+    needs: [Carregamento-maquina,codigo-morto]
     steps: 
       - uses: actions/checkout@v4
       - name: Using Node.js
@@ -36,9 +62,10 @@ jobs:
           npm install
           npm test
 
+
   build:
     runs-on: windows-latest
-    needs: [Carregamento-maquina,teste]
+    needs: [Carregamento-maquina,codigo-morto, teste]
     steps: 
       - uses: actions/checkout@v4
       - name: Using Node.js
