@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { PatternFormat } from "react-number-format";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 
 export const Form = () => {
   // Estes campos irão criar um estado para cada campo do formulário
@@ -12,6 +12,7 @@ export const Form = () => {
   const [cep, setCep] = useState("");
   const [tipoEscola, setTipoEscola] = useState("");
   const [email, setEmail] = useState("");
+  
 
   // Esta variavel irá lidar com o envio do formulário
   const handleSubmit = async (event) => {
@@ -36,13 +37,22 @@ export const Form = () => {
       );
       console.log(response.data);
 
+      toast.success("Dados enviados com sucesso!", {
+        position: "top-center",
+        autoClose: 5000});
       //Este comando irá recarregar a página automaticamente após o sucesso do preenchimento
-      event.target.reset();
-      window.location.reload();
+      setTimeout(() => {
+        event.target.reset();
+        window.location.reload();
+      },5000)
+
 
       // Em caso de erro teremos este campo
     } catch (error) {
       console.error(error);
+      toast.error("Ocorreu um erro ao enviar os dados.", {
+      position: "top-center",
+      autoClose: 8000});
     }
   };
 
@@ -109,6 +119,13 @@ export const Form = () => {
                       autoComplete="username"
                       value={cnpj}
                       onChange={(e) => setCnpj(e.target.value)}
+                    //   Neste campo onBlur ele irá fazer que ao tirar o mouse do campo imncompleto ele trara um erro na tela através do toastify
+                      onBlur={(e) => {
+                        const value = e.target.value.replace(/[^0-9]/g, ''); // remove non-numeric characters
+                        if (value.length < 14) {
+                          toast.error('O número de caracteres do CNPJ é menor que o padrão.');
+                        }
+                      }}
                       className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
                     {/* <input
@@ -191,6 +208,12 @@ export const Form = () => {
                     autoComplete="cep"
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}
+                    onBlur={(e) => {
+                        const value = e.target.value.replace(/[^0-9]/g, ''); // remove non-numeric characters
+                        if (value.length < 8) {
+                          toast.error('O número de caracteres do CEP é menor que o padrão.');
+                        }
+                      }}
                     className="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   {/* <input
@@ -261,6 +284,7 @@ export const Form = () => {
         <div className="mt-6 flex items-center justify-center gap-x-6  p-2">
           <button
             type="reset"
+            onClick={() => toast.info('Limpo Com Sucesso')}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Cancel
