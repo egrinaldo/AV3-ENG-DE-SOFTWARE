@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { PatternFormat } from "react-number-format";
-import {} from "react-toastify"
+import {toast} from "react-toastify"
 
 export const Form = () => {
   // Estes campos irão criar um estado para cada campo do formulário
