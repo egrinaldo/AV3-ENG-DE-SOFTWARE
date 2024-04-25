@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+. "${0%/*}/h"
 # Captura a mensagem de commit
 COMMIT_MSG_FILE=$1
 COMMIT_MSG=$(cat $COMMIT_MSG_FILE)
