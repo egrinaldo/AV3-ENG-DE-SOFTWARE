@@ -17,7 +17,6 @@ jobs:
           node-version: 16.x
       - name: Instalar dependências
         run: |
-          cd frontEnd
           npm ci
           npm install
           
@@ -32,7 +31,6 @@ jobs:
           node-version: 16.x
       - name: Executar testes
         run: |
-          cd frontEnd
           npm install
           npm test
 
@@ -47,6 +45,5 @@ jobs:
           node-version: 16.x
       - name: Executar build
         run: |
-         cd frontEnd
          npm install
          npm run build
