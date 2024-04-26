@@ -58,7 +58,7 @@ module.exports = {
         value: 'test'
       },
       messages: {
-        type: 'Selecione o tipo de commit que você está fazendo:',
+        type: 'Select the type change that you\'re committing:',
         customScope: 'Select the scope this component affects:',
         subject: 'Write a short, imperative mood description of the change:\n',
         body: 'Provide a longer description of the change:\n ',
