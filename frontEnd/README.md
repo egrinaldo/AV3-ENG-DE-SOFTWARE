@@ -72,3 +72,9 @@ com tudo preenchido, a ferramenta faz o comando `git commit` sozinha e resta faz
 `git push`
 
 pronto, seu commit foi feito automaticamente utilizando o commitizen
+
+# COMANDO PARA ABRIR O PORTAL DE INTERFACE VISUAL DO VITEST
+./node_modules/.bin/vitest --ui
+
+# COMANDO PARA INICIAR O JSON-SERVER (SERVIDOR BACKEND)
+json-server --watch db.json --port 8080
