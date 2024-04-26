@@ -12,8 +12,17 @@ export const Form = () => {
   const [cep, setCep] = useState("");
   const [tipoEscola, setTipoEscola] = useState("");
   const [email, setEmail] = useState("");
-  
 
+  // Função para limpar todos os dados do formulario
+  const limparFormulario = () => {
+    setEscola("");
+    setCnpj("");
+    setBairro("");
+    setLogradouro("");
+    setCep("");
+    setTipoEscola("");
+    setEmail("");
+  };
   // Esta variavel irá lidar com o envio do formulário
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -284,7 +293,10 @@ export const Form = () => {
         <div className="mt-6 flex items-center justify-center gap-x-6  p-2">
           <button
             type="reset"
-            onClick={() => toast.info('Limpo Com Sucesso')}
+            onClick={() => {
+              limparFormulario();
+              toast.info('Limpo Com Sucesso');
+            }}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
             Cancel
