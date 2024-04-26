@@ -1,4 +1,4 @@
-#!/bin/sh
-
+#!/usr/bin/env sh
+. "${0%/*}/h"
 
 exec < /dev/tty && node_modules/.bin/cz --hook || true
