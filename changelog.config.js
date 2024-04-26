@@ -58,7 +58,7 @@ module.exports = {
         value: 'test'
       },
       messages: {
-        type: 'Select the type change that you\'re committing:',
+        type: 'Select the type of change that you\'re committing:',
         customScope: 'Select the scope this component affects:',
         subject: 'Write a short, imperative mood description of the change:\n',
         body: 'Provide a longer description of the change:\n ',
