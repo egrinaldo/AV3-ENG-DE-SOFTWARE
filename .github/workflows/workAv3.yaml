@@ -1,0 +1,52 @@
+name: FrontEnd 
+
+on: 
+  push:
+    branches: [ dev, main ]
+  pull_request:
+    branches: [ dev, main ]
+
+jobs:
+  Carregamento-maquina:
+    runs-on: windows-latest
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Instalar dependências
+        run: |
+          cd frontEnd
+          npm ci
+          npm install
+          
+  teste:
+    runs-on: windows-latest
+    needs: [Carregamento-maquina]
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Executar testes
+        run: |
+          cd frontEnd
+          npm install
+          npm test
+
+  build:
+    runs-on: windows-latest
+    needs: [Carregamento-maquina,teste]
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Using Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Executar build
+        run: |
+         cd frontEnd
+         npm install
+         npm run build
