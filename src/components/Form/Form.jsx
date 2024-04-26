@@ -299,7 +299,7 @@ export const Form = () => {
             }}
             className="text-sm font-semibold leading-6 text-gray-900"
           >
-            Cancel
+            Limpar
           </button>
           <button
             type="submit"
