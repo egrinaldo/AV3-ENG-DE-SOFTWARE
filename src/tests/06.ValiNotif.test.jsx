@@ -6,15 +6,16 @@
 // Critérios de Sucesso: Uma notificação de confirmação é mostrada para a escola após
 // o registro bem-sucedido.
 
-import { render } from "@testing-library/react";
+import { render, getByText } from "@testing-library/react";
 import { describe, it } from "vitest";
 import { Form } from "../components/Form/Form";
+import userEvent from "@testing-library/user-event";
 
 
 describe('VERIFICAÇÃO SE O PROCESSO DE NOTIFICAÇÃO ESTA FUNCIONANDO ', () => {
 
     it('Será validado se o componente Form será renderizado', () => {
-        render(<Form />)
+       render(<Form />)
     })
 
 
