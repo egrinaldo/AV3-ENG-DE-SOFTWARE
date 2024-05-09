@@ -19,55 +19,51 @@ describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', (
         
         const mockJSON = [
           {
-            "id": "1",
-            "escola": "Escola FC",
-            "cnpj": "10230480000300",
-            "bairro": "Paralela",
-            "logradouro": "Av Luis Viana filho",
-            "cep": "41650010",
-            "tipoEscola": "publica",
-            "email": "escolafc@gmail.com"
+            "id": 1,
+            "escola": "Escola A",
+            "cnpj": "1234567890001",
+            "bairro": "Bairro A",
+            "logradouro": "Rua 1",
+            "cep": "12345-678",
+            "tipoEscola": "Pública",
+            "email": "escolaA@example.com"
           },
           {
-            "id": "1",
-            "escola": "Escola FC",
-            "cnpj": "10230480000300",
-            "bairro": "Paralela",
-            "logradouro": "Av Luis Viana filho",
-            "cep": "41650010",
-            "tipoEscola": "publica",
-            "email": "escolafc@gmail.com"
+            "id": 2,
+            "escola": "Escola B",
+            "cnpj": "9876543210001",
+            "bairro": "Bairro B",
+            "logradouro": "Rua 2",
+            "cep": "98765-432",
+            "tipoEscola": "Privada",
+            "email": "escolaB@example.com"
           }
         ];
         
 
-        function verificarDuplicatas(jsonArray) {
-          let duplicatasEncontradas = false;
-          const itensUnicos = [];
-          const itensDuplicados = [];
-        
-          for (let i = 0; i < jsonArray.length; i++) {
-            const itemAtual = jsonArray[i];
-            const itemString = JSON.stringify(itemAtual);
-        
-            if (itensUnicos.includes(itemString)) {
-              // Item duplicado encontrado
-              duplicatasEncontradas = true;
-              itensDuplicados.push(itemAtual);
-            } else {
-              // Item único encontrado
-              itensUnicos.push(itemString);
+        function verificarDuplicata(matriz, novoJSON) {
+          for (let json of matriz) {
+            if (json.cnpj === novoJSON.cnpj && json.escola === novoJSON.escola && json.email === novoJSON.email) {
+              return {duplicata: true, mensagem: "ERRO! Escola já cadastrada"};
             }
           }
-        
-          return {
-            duplicatasEncontradas: duplicatasEncontradas,
-            itensDuplicados: itensDuplicados
-          };
+          return {duplicata: false}; 
+        }
+
+        const novoJSON = {
+          "id": 2,
+          "escola": "Escola B",
+          "cnpj": "9876543210001",
+          "bairro": "Bairro B",
+          "logradouro": "Rua 2",
+          "cep": "98765-432",
+          "tipoEscola": "Privada",
+          "email": "escolaB@example.com"
         }
         
-        // Teste para verificar se há duplicatas
-        expect(duplicatasEncontradas).toBe(true);
+        const resultado = verificarDuplicata(mockJSON, novoJSON)
+        expect(resultado.duplicata).toBe(true);
+        expect(resultado.mensagem).toBe("ERRO! Escola já cadastrada");
 })
 
     }) 

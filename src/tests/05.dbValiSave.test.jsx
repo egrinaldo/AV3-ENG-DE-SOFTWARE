@@ -15,18 +15,12 @@ describe('VERIFICAÇÃO SE OS DADOS ENVIADOS SERÃO SALVOS', () => {
 
     it('Será validado se o componente Form será renderizado', () => {
         render(<Form />)
-        // Definição da função para adicionar um novo objeto à matriz JSON
+        //função para adicionar um novo cadastro ao JSON
 function adicionarEscola(escola, novaEscola) {
-    // Adiciona o novo objeto à matriz JSON
     escola.push(novaEscola);
-    
-    // Retorna a matriz atualizada
     return escola;
 }
-
-// Exemplo de uso da função
-// Vamos supor que temos uma matriz JSON existente de escolas
-const escolasMockJson = [
+let escolasMockJson = [
     {
         "id": 1,
         "escola": "Escola A",
@@ -49,7 +43,7 @@ const escolasMockJson = [
     }
 ];
 
-// Novo objeto escola a ser adicionado
+
 const novoCadastro = {
     "id": 3,
     "escola": "Escola C",
@@ -61,15 +55,10 @@ const novoCadastro = {
     "email": "escolaC@example.com"
 };
 
-// Adiciona a nova escola à matriz de escolas
 escolasMockJson = adicionarEscola(escolasMockJson, novoCadastro);
-
-// Exibe a matriz de escolas atualizada
-console.log(escolasMockJson);
-
+expect(escolasMockJson).toContainEqual(novoCadastro);
 
     })
-
 
 })
 
