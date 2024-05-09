@@ -5,6 +5,8 @@
 
 // Critérios de Sucesso: A escola recebe uma mensagem de erro indicando que já está
 // registrada.
+
+// criar uma função que leia dois jsons e verifique se existem itens iguais
  
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
@@ -15,7 +17,18 @@ describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', (
     it('Será validado se o componente Form será renderizado', () => {
         render(<Form />)
         
-        const mockJSON = {
+        const mockJSON = [
+          {
+            "id": "1",
+            "escola": "Escola FC",
+            "cnpj": "10230480000300",
+            "bairro": "Paralela",
+            "logradouro": "Av Luis Viana filho",
+            "cep": "41650010",
+            "tipoEscola": "publica",
+            "email": "escolafc@gmail.com"
+          },
+          {
             "id": "1",
             "escola": "Escola FC",
             "cnpj": "10230480000300",
@@ -25,29 +38,36 @@ describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', (
             "tipoEscola": "publica",
             "email": "escolafc@gmail.com"
           }
+        ];
+        
 
-          const keys = [];
-
-          // Variável para rastrear se há duplicidades
-          let hasDuplicates = false;
-      
-          // Verificar cada chave do JSON
-          for (let key in mockJSON) {
-            // Se a chave já estiver no array de chaves, significa que é duplicada
-            if (keys.indexOf(key) !== -1) {
-              hasDuplicates = true;
-              break; // Se encontramos uma duplicata, podemos parar de verificar
+        function verificarDuplicatas(jsonArray) {
+          let duplicatasEncontradas = false;
+          const itensUnicos = [];
+          const itensDuplicados = [];
+        
+          for (let i = 0; i < jsonArray.length; i++) {
+            const itemAtual = jsonArray[i];
+            const itemString = JSON.stringify(itemAtual);
+        
+            if (itensUnicos.includes(itemString)) {
+              // Item duplicado encontrado
+              duplicatasEncontradas = true;
+              itensDuplicados.push(itemAtual);
             } else {
-              // Se não estiver, adiciona à lista de chaves
-              keys.push(key);
+              // Item único encontrado
+              itensUnicos.push(itemString);
             }
           }
-      
-          // Asserção para verificar se há duplicidades
-          expect(hasDuplicates).toBe(false);
-    })
-
-
+        
+          return {
+            duplicatasEncontradas: duplicatasEncontradas,
+            itensDuplicados: itensDuplicados
+          };
+        }
+        
+        // Teste para verificar se há duplicatas
+        expect(duplicatasEncontradas).toBe(true);
 })
 
-    
+    }) 
