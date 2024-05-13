@@ -18,7 +18,7 @@ describe('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO CLICAR NO BOTÃO LIMP
 
     it('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO LIMPAR O BOTÃO REALMENTE IRÁ RESETAR O FORMS E OS INPUTS SERÃO APAGADOS', async() => {
         render(<Form />)
-
+       // ESTE TRECHO IRÁ LOCALIZAR O DATA TEST ID E INSERIR UM DADO FAKE
         await userEvent.type(screen.getByTestId('escola'), 'escolaTeste');
         await userEvent.type(screen.getByTestId('cnpj'), '11111111111111');
         await userEvent.type(screen.getByTestId('logradouro'), 'logradouroTeste');
@@ -27,9 +27,10 @@ describe('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO CLICAR NO BOTÃO LIMP
         await userEvent.type(screen.getByTestId('tipoEscola'), 'tipoEscolaTeste');
         await userEvent.type(screen.getByTestId('email'), 'emailTeste@gmail.com');
 
-        
+        // ESTE CAMPO IRÁ SIMULAR UM CLICK NO BOTÃO LIMPAR
         fireEvent.click(screen.getByRole('button', { name: /Limpar/i }));
 
+        // ESTE CAMPO IRÁ VALIDAR SE APÓS O CLICK E EFEITO DO OBJETIVO DO BOTÃO OS INPUTS ESTARÃO LIMPOS
         expect(screen.getByTestId('escola')).toHaveValue('');
         expect(screen.getByTestId('cnpj')).toHaveValue('');
         expect(screen.getByTestId('logradouro')).toHaveValue('');
