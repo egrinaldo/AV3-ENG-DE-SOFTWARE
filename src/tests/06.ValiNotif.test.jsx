@@ -6,28 +6,30 @@
 // Critérios de Sucesso: Uma notificação de confirmação é mostrada para a escola após
 // o registro bem-sucedido.
 
-import { render, getByText, getByTestId } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { Form } from "../components/Form/Form";
 import userEvent from "@testing-library/user-event";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-describe('VERIFICAÇÃO SE O PROCESSO DE NOTIFICAÇÃO ESTA FUNCIONANDO ', () => {
+describe('VERIFICAÇÃO SE O PROCESSO DE NOTIFICAÇÃO ESTA FUNCIONANDO', () => {
 
-    it('Será validado se o componente Form será renderizado', () => {
-       const { getByText } = render(<Form/>);
+  it('Será validado se o componente Form será renderizado', async () => {
 
-       const botaoSalvar = getByTestId('Salvar');
-       userEvent.click(botaoSalvar);
-       expect(getByText("Ocorreu um erro ao enviar os dados.")).toBeInTheDocument();
+    render(
+      <>
+        <Form />
+        <ToastContainer />
+      </>
+    );
 
-    //    const { getByTestId, getByText} = render(<Form />)
-    //    userEvent.click(getByTestId('salvar'));
-    //    expect(getByText("Dados enviados com sucesso!")).toBeInTheDocument();
+    const buttonTestID = screen.getByTestId('salvar');
+    userEvent.click(buttonTestID);
 
-    })
-
-
-})
-
-    
+    await waitFor(() => {
+      expect(screen.getByText("Ocorreu um erro ao enviar os dados.")).toBeInTheDocument();
+    });
+  });
+});
