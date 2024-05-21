@@ -64,10 +64,10 @@ describe('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO LIMPAR O BOTÃO REALM
         expect(retorno).toEqual('Limpo Com Sucesso')
     });
 
-    it('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO LIMPAR O BOTÃO REALMENTE IRÁ RESETAR O FORMS', () =>{
+    it('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO LIMPAR O BOTÃO REALMENTE IRÁ APRESENTAR ERRO AO RESETAR O FORMS', () =>{
 
         const validaClear = vi.fn()
-        validaClear.mockReturnValue(true)
+        validaClear.mockReturnValue(false)
 
         const dataClear = {
             inputEscola: 'Teste',
