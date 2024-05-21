@@ -8,10 +8,15 @@ import { describe, it, expect } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Form } from "../components/Form/Form";
 
+const renderComponent = () => {
+    return render(<Form/>)
+  }
+  
+
 describe('', () => {
    
   it('Verificar se o CNPJ válido irá retornar verdadeiro', () => {
-    render(<Form/>);
+    renderComponent();
 
     const tCNPJ = screen.getByTestId('cnpj');
 
@@ -25,7 +30,7 @@ describe('', () => {
   });
 
   it('Verificar se o CNPJ inválido irá retornar falso', () => {
-    render(<Form/>);
+    renderComponent();
 
     const tCNPJ = screen.getByTestId('cnpj');
 
@@ -39,7 +44,7 @@ describe('', () => {
   });
   
   it('Verificar se o CNPJ nulo irá retornar falso', () => {
-    render(<Form/>);
+    renderComponent();
 
     const tCNPJ = screen.getByTestId('cnpj');
 
@@ -51,5 +56,19 @@ describe('', () => {
 
     expect(tCNPJ).toHaveValue('');
   });
+
+  it('Verificar se o CEP ', () => {
+    renderComponent();
+
+    const tCEP = screen.getByTestId('cep');
+
+    expect(tCEP).toBeInTheDocument();
+
+    fireEvent.change(tCEP, {target: {value: '18455-000'}});
+
+    fireEvent.click(screen.getByRole('button', {name: /Save/i}));
+
+    expect(tCEP);
+  })
 
 });
