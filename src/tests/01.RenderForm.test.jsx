@@ -64,6 +64,9 @@ describe('VERIFICAÇÃO SE O FORMULARIO SERA RENDERIZADO E SEUS COMPONENTES', ()
 
     it('VERIFICAÇÃO SE O FORMULARIO SERA RENDERIZADO E SEUS COMPONENTES', () =>{
         const formularioRender = RenderForm(true);
+
+// ---------------------------------------------------------------------------------------------
+// Mock 
 // Verifica se o HTML contem as partes informadas na função
         expect(formularioRender).toContain('<form>')
         expect(formularioRender).toContain('<button>')
@@ -106,7 +109,7 @@ describe('Verifica se o CNPJ é válido ou inválido a partir da entrada', () =>
 
     it('Irá retornar um erro para um CNPJ inválido', () => {
         const validarCNPJmock = vi.fn();
-        validarCNPJmock.mockReturnValue(false);
+        validarCNPJmock.mockReturnValue(true);
     
         const retorno = verificaCNPJ('61137574000109');
         expect(retorno).toEqual('Válido');
