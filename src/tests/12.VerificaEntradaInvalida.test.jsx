@@ -1,6 +1,7 @@
 import {describe, it, expect} from 'vitest';
-import {render, fireEvent} from '@testing-library/react';
-import { Form } from "../components/Form/Form";
+import {render, screen, fireEvent} from '@testing-library/react';
+import { Form } from '../components/Form/Form';
+import { SubmitMock } from './mock2.1/SubmitMock';
 import { toast } from "react-toastify";
 
 
@@ -8,6 +9,7 @@ describe('VERIFICAÇÃO SE O CAMPO ESTÁ RECEBENDO UM DADO INVÁLIDO', () => {
 
     it('SERÁ VALIDADO SE OS CAMPOS DE INT RECEBEM STRING (CNPJ E CEP)', async () => {
         const {getByTestId} = render(<Form />);
+        render(<SubmitMock />);
 
         const campos = ['escola', 'cnpj', 'bairro', 'logradouro', 'cep', 'tipoEscola', 'email']
 
@@ -16,7 +18,7 @@ describe('VERIFICAÇÃO SE O CAMPO ESTÁ RECEBENDO UM DADO INVÁLIDO', () => {
             fireEvent.change(input, { target: { value: 'TESTE' } })
           })
 
-        fireEvent.click(getByTestId('salvar'));
+          fireEvent.click(screen.getByRole('button', { name: /Salvar/ }));
 
         await (() => {
             const toastMessage = toast.isActive(toast.id) ? toast.message : null
