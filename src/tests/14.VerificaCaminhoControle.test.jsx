@@ -24,7 +24,7 @@ describe('', () => {
 
     fireEvent.change(tCNPJ, { target: { value: '87.442.839/0001-70' }});
     
-    fireEvent.click(screen.getByRole('button', { name: /Save/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Salvar/i }));
 
     expect(tCNPJ).toHaveValue('87.442.839/0001-70');
   });
@@ -38,7 +38,7 @@ describe('', () => {
 
     fireEvent.change(tCNPJ, { target: { value: '00.000.000/0000-00' }});
     
-    fireEvent.click(screen.getByRole('button', { name: /Save/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Salvar/i }));
 
     expect(tCNPJ).toHaveValue('00.000.000/0000-00');
   });
@@ -52,7 +52,7 @@ describe('', () => {
 
     fireEvent.change(tCNPJ, { target: { value: '' }});
     
-    fireEvent.click(screen.getByRole('button', { name: /Save/i }));
+    fireEvent.click(screen.getByRole('button', { name: /Salvar/i }));
 
     expect(tCNPJ).toHaveValue('');
   });
@@ -66,7 +66,7 @@ describe('', () => {
 
     fireEvent.change(tCEP, {target: {value: '18455-000'}});
 
-    fireEvent.click(screen.getByRole('button', {name: /Save/i}));
+    fireEvent.click(screen.getByRole('button', {name: /Salvar/i}));
 
     expect(tCEP);
   })
