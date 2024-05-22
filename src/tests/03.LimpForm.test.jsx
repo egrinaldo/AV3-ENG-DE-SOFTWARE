@@ -1,4 +1,4 @@
-import {describe, it, expect} from 'vitest';
+import {describe, it, expect, vi} from 'vitest';
 import {render, screen, fireEvent} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ClearMock } from './mock2.1/ClearMock';
@@ -39,5 +39,41 @@ describe('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO CLICAR NO BOTÃO LIMP
         expect(screen.getByTestId('tipoEscola')).toHaveValue('');
         expect(screen.getByTestId('email')).toHaveValue('');
 
-    })
+    });
+});
+
+// ---------------------------------------------------------------------------------------------
+// Mock para Clear Input
+
+
+function clearValida(limpButton){
+    if(limpButton === ''){
+        return 'Limpo Com Sucesso'
+    }
+    return 'Erro ao limpar o campo'
+}
+
+describe('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO LIMPAR O BOTÃO REALMENTE IRÁ RESETAR O FORMS E OS INPUTS SERÃO APAGADOS', () => {
+    it('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO LIMPAR O BOTÃO REALMENTE IRÁ RESETAR O FORMS', () =>{
+
+        const validaClear = vi.fn()
+        validaClear.mockReturnValue(true)
+
+
+        const retorno = clearValida('');
+        expect(retorno).toEqual('Limpo Com Sucesso')
+    });
+
+    it('VALIDANDO SE AO INSERIR UM DETERMINADO DADO E AO LIMPAR O BOTÃO REALMENTE IRÁ RESETAR O FORMS', () =>{
+
+        const validaClear = vi.fn()
+        validaClear.mockReturnValue(true)
+
+        const dataClear = {
+            inputEscola: 'Teste',
+        }
+
+        const retorno = clearValida(dataClear);
+        expect(retorno).toEqual('Erro ao limpar o campo')
+    });
 })
