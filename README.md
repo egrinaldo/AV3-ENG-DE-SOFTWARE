@@ -11,17 +11,11 @@ Currently, two official plugins are available:
 
 ### PASSO 1:
 
-ao clonar o repositório, você deve abrir o terminal de sua IDE para executar os comandos. para isso digite
-
-`cd .\frontEnd\`
-
-### PASSO 2:
-
 dentro da pasta correta você deve instalar as bibliotecas necessárias para rodar o programa. para isso digite
 
 `npm install`
 
-### PASSO 3:
+### PASSO 2:
 
 com o processo feito, você pode utilizar os comandos a seguir para utilizar o repositório
 
