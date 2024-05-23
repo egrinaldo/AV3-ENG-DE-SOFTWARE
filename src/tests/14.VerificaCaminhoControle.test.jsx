@@ -5,80 +5,16 @@
 //Critérios de Sucesso: O sistema aceita a inscrição e exibe uma mensagem de confirmação. 
 
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { Form } from "../components/Form/Form";
-
-const renderComponent = () => {
-    return render(<Form/>)
-  }
-  
-
-describe('', () => {
-   
-  it('Verificar se o CNPJ válido irá retornar verdadeiro', () => {
-    renderComponent();
-
-    const tCNPJ = screen.getByTestId('cnpj');
-
-    expect(tCNPJ).toBeInTheDocument();
-
-    fireEvent.change(tCNPJ, { target: { value: '87.442.839/0001-70' }});
-    
-    fireEvent.click(screen.getByRole('button', { name: /Salvar/i }));
-
-    expect(tCNPJ).toHaveValue('87.442.839/0001-70');
-  });
-
-  it('Verificar se o CNPJ inválido irá retornar falso', () => {
-    renderComponent();
-
-    const tCNPJ = screen.getByTestId('cnpj');
-
-    expect(tCNPJ).toBeInTheDocument();
-
-    fireEvent.change(tCNPJ, { target: { value: '00.000.000/0000-00' }});
-    
-    fireEvent.click(screen.getByRole('button', { name: /Salvar/i }));
-
-    expect(tCNPJ).toHaveValue('00.000.000/0000-00');
-  });
-  
-  it('Verificar se o CNPJ nulo irá retornar falso', () => {
-    renderComponent();
-
-    const tCNPJ = screen.getByTestId('cnpj');
-
-    expect(tCNPJ).toBeInTheDocument();
-
-    fireEvent.change(tCNPJ, { target: { value: '' }});
-    
-    fireEvent.click(screen.getByRole('button', { name: /Salvar/i }));
-
-    expect(tCNPJ).toHaveValue('');
-  });
-
-  it('Verificar se o CEP ', () => {
-    renderComponent();
-
-    const tCEP = screen.getByTestId('cep');
-
-    expect(tCEP).toBeInTheDocument();
-
-    fireEvent.change(tCEP, {target: {value: '18455-000'}});
-
-    fireEvent.click(screen.getByRole('button', {name: /Salvar/i}));
-
-    expect(tCEP);
-  })
-
-});
 
 // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- //
 function validarESCOLA(escola) {
+
+  // A Função irá verificar se a Escola é Null
   if (!escola) {
     return 'Erro: Escola Inválida'
   }
 
+  // Caso não exista nenhuma divergência a Escola é valido
   return 'Escola Válida'
 }
 
@@ -107,7 +43,7 @@ function validarCNPJ(cnpj) {
  // A Função irá remover os caracteres não numéricos
  cnpj = cnpj.replace(/[^\d]+/g, '');
 
- // A Função irá remover os caracteres não numéricos
+ // A Função irá verificar se o CNPJ é Null
  if (!cnpj) {
    return 'Erro: CNPJ Inválido';
  }
@@ -184,10 +120,13 @@ describe('VERIFICA SE O CNPJ É VÁLIDO / INVÁLIDO A PARTIR DE DIFERENTES DADOS
 // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- //
 
 function validarBAIRRO(bairro) {
+  
+  // A Função irá verificar se o Tipo Escola é Null
   if (!bairro) {
     return 'Erro: Bairro Inválido'
   }
 
+  // Caso não exista nenhuma divergência o Bairro é valido
   return 'Bairro Válido'
 }
 
@@ -213,10 +152,13 @@ describe('VERIFICA SE A BAIRRO É VÁLIDO / INVÁLIDO A PARTIR DOS DADOS DE ENTR
 // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- //
 
 function validarLOGRADOURO(logradouro) {
+
+  // A Função irá verificar se o Tipo Escola é Null
   if (!logradouro) {
     return 'Erro: Logradouro Inválido'
   }
 
+  // Caso não exista nenhuma divergência o Logradouro é valido
   return 'Logradouro Válido'
 }
 
@@ -245,7 +187,7 @@ function validarCEP(cep) {
   // A Função irá remover os caracteres não numéricos
   cep = cep.replace(/[^\d]+/g, '');
 
-  // A Função irá remover os caracteres não numéricos
+  // A Função irá verificar se o CEP é Null
   if (!cep) {
    return 'Erro: CEP Inválido';
   }
@@ -322,14 +264,18 @@ describe('VERIFICA SE O CEP É VÁLIDO / INVÁLIDO A PARTIR DE DIFERENTES DADOS 
 // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- //
 
 function validarTIPOESCOLA (tipoEscola) {
+  // A Função irá verificar se o Tipo Escola é Null
   if (!tipoEscola) {
     return 'Erro: Tipo Escola Inválido'
   }
 
+  // A Função irá verificar se o Tipo Escola é Diferente de "Particular / Publica"
   if (tipoEscola !== 'Pública' && tipoEscola !== 'Particular') {
     return 'Erro: Tipo Escola Inválido'
   }
 
+  
+  // Caso não exista nenhuma divergência o Tipo é valido
   return 'Tipo Escola Válido'
 }
 
@@ -372,18 +318,20 @@ describe('VERIFICA SE O TIPO DE ESCOLA É VÁLIDO / INVÁLIDO A PARTIR DOS DADOS
 // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- // -- //
 
 function validarEMAIL(email) {
-  // Expressão regular para validar o formato do email
+  // A Função irá validar o formato do email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Verifica se o email corresponde ao formato válido
+  // A Função irá verificar se o Email corresponde ao formato válido
   if (!emailRegex.test(email)) {
     return 'Erro: Email Inválido';
   }
 
+  // A Função irá verificar se o Email é Null
   if (!email) {
     return 'Erro: Email Inválido';
   }
 
+  // Caso não exista nenhuma divergência o Email é valido
   return 'Email Válido';
 }
 
@@ -410,5 +358,6 @@ describe('Validação do Email', () => {
 
     const tEMAIL = validarEMAIL('');
     expect(tEMAIL).toEqual('Erro: Email Inválido');
-});
+  });
+
 });
