@@ -64,4 +64,6 @@ describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', (
         const resultado = verificarDuplicata(mockJSON, novoJSON)
         expect(resultado.duplicata).toBe(true);
         expect(resultado.mensagem).toBe("ERRO! Escola já cadastrada");
+      })
 
+    })
