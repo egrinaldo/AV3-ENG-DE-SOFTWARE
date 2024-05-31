@@ -54,6 +54,83 @@
       "tipoEscola": "",
       "email": "",
       "uf": ""
+    },
+    {
+      "id": "2e8e",
+      "escola": "",
+      "cnpj": "",
+      "bairro": "",
+      "logradouro": "",
+      "cep": "",
+      "tipoEscola": "",
+      "email": "",
+      "uf": ""
+    },
+    {
+      "id": "b76b",
+      "escola": "",
+      "cnpj": "",
+      "bairro": "",
+      "logradouro": "",
+      "cep": "",
+      "tipoEscola": "",
+      "email": "",
+      "uf": ""
+    },
+    {
+      "id": "7cd3",
+      "escola": "TESTE",
+      "cnpj": "12.321.123/1231-23",
+      "bairro": "TESTE",
+      "logradouro": "TESTE",
+      "cep": "12321-123",
+      "tipoEscola": "TESTE",
+      "email": "123@123.com",
+      "uf": ""
+    },
+    {
+      "id": "218f",
+      "escola": "",
+      "cnpj": "",
+      "bairro": "",
+      "logradouro": "",
+      "cep": "",
+      "tipoEscola": "",
+      "email": "",
+      "uf": ""
+    },
+    {
+      "id": "9a7b",
+      "escola": "",
+      "cnpj": "",
+      "bairro": "",
+      "logradouro": "",
+      "cep": "",
+      "tipoEscola": "",
+      "email": "",
+      "uf": ""
+    },
+    {
+      "id": "6649",
+      "escola": "",
+      "cnpj": "",
+      "bairro": "",
+      "logradouro": "",
+      "cep": "",
+      "tipoEscola": "",
+      "email": "",
+      "uf": ""
+    },
+    {
+      "id": "c4de",
+      "escola": "",
+      "cnpj": "",
+      "bairro": "",
+      "logradouro": "",
+      "cep": "",
+      "tipoEscola": "",
+      "email": "",
+      "uf": ""
     }
   ]
 }
