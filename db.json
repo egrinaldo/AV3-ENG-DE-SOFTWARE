@@ -8,7 +8,8 @@
       "logradouro": "",
       "cep": "",
       "tipoEscola": "",
-      "email": ""
+      "email": "",
+      "uf": ""
     }
   ]
 }
