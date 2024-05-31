@@ -156,6 +156,77 @@ export const Form = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Nome Completo Do Responsável Pela Instituição Escolar
+                </label>
+                <div className="col-span-full">
+                  <div className="flex  rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ">
+                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
+                      Responsável:
+                    </span>
+                    <input
+                      type="text"
+                      name="escola"
+                      id="escola"
+                      data-testId="escola"
+                      autoComplete="username"
+                      value={escola}
+                      onChange={(e) => setEscola(e.target.value)}
+                      className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  CPF Do Responsável
+                </label>
+                <div className="col-span-full">
+                  <div className="flex  rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ">
+                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
+                      CPF:
+                    </span>
+                    {/* Função PatternFormat para adicionar a formatação desejada do campo cnpj neste caso */}
+                    <PatternFormat
+                      format="###.###.###-##"
+                      mask={"_"}
+                      displayType="input"
+                      type="text"
+                      name="cpf"
+                      id="cpf"
+                      data-testId="cpf"
+                      autoComplete="username"
+                      value={cpf}
+                      onChange={(e) => setCnpj(e.target.value)}
+                    //   Neste campo onBlur ele irá fazer que ao tirar o mouse do campo imncompleto ele trara um erro na tela através do toastify
+                      onBlur={() => {
+                        if (ValidaCnpj(cpf)) {    
+                          toast.error('O número de caracteres do CNPJ é menor que o padrão.'); }
+                      }}
+                      className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    />
+                    {/* <input
+                      type="text"
+                      name="cnpj"
+                      id="cnpj"
+                      autoComplete="username"
+                      value={cnpj}
+                      onChange={(e) => setCnpj(e.target.value)}
+                      className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    /> */}
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
