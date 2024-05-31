@@ -32,6 +32,28 @@
       "tipoEscola": "",
       "email": "",
       "uf": ""
+    },
+    {
+      "id": "b1f7",
+      "escola": "",
+      "cnpj": "",
+      "bairro": "",
+      "logradouro": "",
+      "cep": "",
+      "tipoEscola": "",
+      "email": "",
+      "uf": ""
+    },
+    {
+      "id": "ac7a",
+      "escola": "",
+      "cnpj": "",
+      "bairro": "",
+      "logradouro": "",
+      "cep": "",
+      "tipoEscola": "",
+      "email": "",
+      "uf": ""
     }
   ]
 }
