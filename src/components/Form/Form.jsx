@@ -6,6 +6,7 @@ import { ValidaCnpj } from "../Functions/ValidarCnpj";
 import { ValidaCep } from '../Functions/ValidaCep';
 import { ValidaUf } from '../Functions/ValidaUf';
 import { ValidaEmail } from '../Functions/ValidaEmail';
+import { ValidaCpf } from "../Functions/ValidaCpf";
 
 export const Form = () => {
   // Estes campos irão criar um estado para cada campo do formulário
@@ -16,7 +17,9 @@ export const Form = () => {
   const [cep, setCep] = useState("");
   const [tipoEscola, setTipoEscola] = useState("");
   const [email, setEmail] = useState("");
-  const [uf, setUf] = useState("")
+  const [uf, setUf] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [responsavel, setResponsavel] = useState("");
 
   // Função para limpar todos os dados do formulario
   const limparFormulario = () => {
@@ -28,6 +31,8 @@ export const Form = () => {
     setTipoEscola("");
     setEmail("");
     setUf("");
+    setResponsavel(""),
+    setCpf("");
   };
   // Esta variavel irá lidar com o envio do formulário
   const handleSubmit = async (event) => {
@@ -43,6 +48,8 @@ export const Form = () => {
       tipoEscola,
       email,
       uf,
+      responsavel,
+      cpf,
     };
 
     // Este Campo irá fazer o envio dos dados adquiridos POST para o servidor db
@@ -156,6 +163,77 @@ export const Form = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Nome Completo do Responsável pela Instituição Escolar
+                </label>
+                <div className="col-span-full">
+                  <div className="flex  rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ">
+                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
+                      Responsável:
+                    </span>
+                    <input
+                      type="text"
+                      name="escola"
+                      id="escola"
+                      data-testId="escola"
+                      autoComplete="username"
+                      value={escola}
+                      onChange={(e) => setEscola(e.target.value)}
+                      className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  CPF do Responsável
+                </label>
+                <div className="col-span-full">
+                  <div className="flex  rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 ">
+                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
+                      CPF:
+                    </span>
+                    {/* Função PatternFormat para adicionar a formatação desejada do campo cnpj neste caso */}
+                    <PatternFormat
+                      format="###.###.###-##"
+                      mask={"_"}
+                      displayType="input"
+                      type="text"
+                      name="cpf"
+                      id="cpf"
+                      data-testId="cpf"
+                      autoComplete="username"
+                      value={cpf}
+                      onChange={(e) => setCpf(e.target.value)}
+                    //   Neste campo onBlur ele irá fazer que ao tirar o mouse do campo imncompleto ele trara um erro na tela através do toastify
+                      onBlur={() => {
+                        if (ValidaCpf(cpf)) {    
+                          toast.error('O número de caracteres do CPF é menor que o padrão.'); }
+                      }}
+                      className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    />
+                    {/* <input
+                      type="text"
+                      name="cnpj"
+                      id="cnpj"
+                      autoComplete="username"
+                      value={cnpj}
+                      onChange={(e) => setCnpj(e.target.value)}
+                      className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    /> */}
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
