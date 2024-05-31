@@ -1,7 +1,7 @@
 export function ValidaCpf(cpf){
 
-
-    if(cpf.length < 11){
+    const verificacpf = /^(\d{3}\.?\d{3}\.?\d{3}-?\d{2})$/;
+    if(!verificacpf.test(cpf)){
         return 'O número de caracteres do CPF é menor que o padrão.'
     }
 }
