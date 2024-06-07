@@ -1,7 +1,7 @@
 export function ValidaCpf(cpf){
 
     const verificacpf = /^(\d{3}\.?\d{3}\.?\d{3}-?\d{2})$/;
-    if(!verificacpf.test(cpf)){
+    if(!verificacpf.test(cpf) || cpf ===''){
         return false;
     }
   

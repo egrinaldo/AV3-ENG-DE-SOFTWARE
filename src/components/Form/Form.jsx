@@ -7,6 +7,11 @@ import { ValidaCep } from '../Functions/ValidaCep';
 import { ValidaUf } from '../Functions/ValidaUf';
 import { ValidaEmail } from '../Functions/ValidaEmail';
 import { ValidaCpf } from "../Functions/ValidaCpf";
+import {ValidaBairro} from "../Functions/ValidaBairro"
+import {ValidaEscola} from "../Functions/ValidaEscola"
+import {ValidaLogradouro} from "../Functions/ValidaLogradouro"
+import {ValidaResponsavel} from "../Functions/ValidaResponsavel"
+import {ValidaTipoEscola} from "../Functions/ValidaTipoEscola"
 
 export const Form = () => {
   // Estes campos irão criar um estado para cada campo do formulário
@@ -35,10 +40,24 @@ export const Form = () => {
     setResponsavel(""),
     setCpf("");
   };
+
+  const validarCampos = () => {
+    if (!ValidaCnpj(cnpj) || !ValidaBairro(bairro) || !ValidaCep(cep) || !ValidaCpf(cpf) || !ValidaEmail(email) || 
+    !ValidaEscola(escola) || !ValidaLogradouro(logradouro) || !ValidaResponsavel(responsavel) || !ValidaTipoEscola(tipoEscola)
+    || !ValidaUf(uf)) {
+      toast.error("CNPJ inválido.");
+      return false;
+    }
+    // Adicione mais validações conforme necessário
+    return true;
+  };
   // Esta variavel irá lidar com o envio do formulário
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (!validarCampos()) {
+      return;
+    }
     // Esta variavel irá trazer os dados
     const formData = {
       escola,
@@ -185,8 +204,8 @@ export const Form = () => {
                       id="escola"
                       data-testId="escola"
                       autoComplete="username"
-                      value={escola}
-                      onChange={(e) => setEscola(e.target.value)}
+                      value={responsavel}
+                      onChange={(e) => setResponsavel(e.target.value)}
                       className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -219,7 +238,7 @@ export const Form = () => {
                       onChange={(e) => setCpf(e.target.value)}
                     //   Neste campo onBlur ele irá fazer que ao tirar o mouse do campo imncompleto ele trara um erro na tela através do toastify
                       onBlur={() => {
-                        if (ValidaCpf(cpf)) {    
+                        if (ValidaCpf(cpf) === false) {    
                           toast.error('O número de caracteres do CPF é menor que o padrão.'); }
                       }}
                       className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
@@ -308,7 +327,7 @@ export const Form = () => {
                     value={cep}
                     onChange={(e) => setCep(e.target.value)}
                     onBlur={() => {
-                        if (ValidaCep(cep)) {
+                        if (ValidaCep(cep) === false) {
                           toast.error('O número de caracteres do CEP é menor que o padrão.');
                         }
                       }}
@@ -341,7 +360,7 @@ export const Form = () => {
                     value={uf}
                     onChange={(e) => setUf(e.target.value)}
                     onBlur={() => {
-                      if (ValidaUf(uf)) {
+                      if (ValidaUf(uf) === false) {
                         toast.error('Este Projeto é válido somente no municipio de Salvador Ba.');
                       }
                     }}
@@ -398,7 +417,7 @@ export const Form = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onBlur={() => {
-                    if (ValidaEmail(email)) {
+                    if (ValidaEmail(email) === false) {
                       toast.error('E-mail inválido. Verifique o novamente.');
                     }
                   }}
