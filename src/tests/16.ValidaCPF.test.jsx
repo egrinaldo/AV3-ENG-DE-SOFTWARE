@@ -7,6 +7,6 @@ describe('Função que verifica se o CNPJ é válido ou inválido a partir da en
     it('Irá retornar false para um CNPJ inválido', () => {
         const cpf = '122.134.123-';
         const retorno = ValidaCpf(cpf);
-        expect(retorno).toEqual('O número de caracteres do CPF é menor que o padrão.');
+        expect(retorno).toEqual(false);
     });
 })

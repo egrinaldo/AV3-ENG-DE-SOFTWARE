@@ -13,7 +13,7 @@ describe('Função que verifica se a UF é válida a partir da entrada', () => {
     it('Irá retornar false para uma UF inválida', () => {
         const uf = 'Sergipe';
         const retorno =ValidaUf(uf);
-        expect(retorno).toEqual('Este Projeto é válido somente no municipio de Salvador Ba.');
+        expect(retorno).toEqual(false);
     });
 })
 

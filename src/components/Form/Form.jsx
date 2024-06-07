@@ -21,6 +21,7 @@ export const Form = () => {
   const [cpf, setCpf] = useState("");
   const [responsavel, setResponsavel] = useState("");
 
+
   // Função para limpar todos os dados do formulario
   const limparFormulario = () => {
     setEscola("");
@@ -51,6 +52,8 @@ export const Form = () => {
       responsavel,
       cpf,
     };
+
+
 
     // Este Campo irá fazer o envio dos dados adquiridos POST para o servidor db
     try {
@@ -146,7 +149,7 @@ export const Form = () => {
                       onChange={(e) => setCnpj(e.target.value)}
                     //   Neste campo onBlur ele irá fazer que ao tirar o mouse do campo imncompleto ele trara um erro na tela através do toastify
                       onBlur={() => {
-                        if (ValidaCnpj(cnpj)) {    
+                        if (ValidaCnpj(cnpj) === false) {    
                           toast.error('O número de caracteres do CNPJ é menor que o padrão.'); }
                       }}
                       className="block w-3/4 flex-1  border-0 bg-transparent py-1.5 pl-1 ml-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"

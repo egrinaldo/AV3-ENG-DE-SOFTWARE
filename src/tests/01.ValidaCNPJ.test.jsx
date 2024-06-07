@@ -7,9 +7,9 @@ import { ValidaCnpj } from "../components/Functions/ValidarCnpj";
 
 describe('Função que verifica se o CNPJ é válido ou inválido a partir da entrada', () => {
     it('Irá retornar false para um CNPJ inválido', () => {
-        const cnpj = '069247890003';
+        const cnpj = '0920133313';
         const retorno = ValidaCnpj(cnpj);
-        expect(retorno).toEqual('O número de caracteres do CNPJ é menor que o padrão.');
+        expect(retorno).toEqual(false);
     });
 })
 

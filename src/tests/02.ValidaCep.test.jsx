@@ -10,7 +10,7 @@ describe('Função que verifica se o CEP é válido  a partir da entrada', () =>
     it('Irá retornar false para um  CEP inválido', () => {
         const cep = '4011100';
         const retorno = ValidaCep(cep);
-        expect(retorno).toEqual('O número de caracteres do CEP é menor que o padrão.');
+        expect(retorno).toEqual(false);
     });
 })
 
