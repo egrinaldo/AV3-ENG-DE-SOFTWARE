@@ -11,6 +11,8 @@
 import { render } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Form } from "../components/Form/Form";
+import { verificarDuplicata } from "../components/Functions/VerificaDuplicidade";
+
 
 describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', () => {
 
@@ -39,17 +41,7 @@ describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', (
             "email": "escolaB@example.com"
           }
         ];
-        
-
-        function verificarDuplicata(matriz, novoJSON) {
-          for (let json of matriz) {
-            if (json.cnpj === novoJSON.cnpj && json.escola === novoJSON.escola && json.email === novoJSON.email) {
-              return {duplicata: true, mensagem: "ERRO! Escola já cadastrada"};
-            }
-          }
-          return {duplicata: false}; 
-        }
-
+      
         const novoJSON = {
           "id": 2,
           "escola": "Escola B",
@@ -63,7 +55,7 @@ describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', (
         
         const resultado = verificarDuplicata(mockJSON, novoJSON)
         expect(resultado.duplicata).toBe(true);
-        expect(resultado.mensagem).toBe("ERRO! Escola já cadastrada");
+        expect(resultado.mensagem).toBe("Escola já cadastrada");
       })
 
     })
