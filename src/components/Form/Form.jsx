@@ -12,6 +12,7 @@ import {ValidaEscola} from "../Functions/ValidaEscola"
 import {ValidaLogradouro} from "../Functions/ValidaLogradouro"
 import {ValidaResponsavel} from "../Functions/ValidaResponsavel"
 import {ValidaTipoEscola} from "../Functions/ValidaTipoEscola"
+import { verificarDuplicata } from "../Functions/VerificaDuplicidade";
 
 export const Form = () => {
   // Estes campos irão criar um estado para cada campo do formulário
@@ -76,6 +77,21 @@ export const Form = () => {
 
     // Este Campo irá fazer o envio dos dados adquiridos POST para o servidor db
     try {
+
+      // Esse bloco irá acessar o banco de dados 
+      // e antes de salvar vai verificar se ha duplicidade com o banco de dados no momento que pressionar o botão 
+      
+      const { data: matrizJson } = await axios.get("http://localhost:8080/instituicao")
+      const { duplicata, mensagem } = verificarDuplicata(matrizJson, formData)
+
+      if (duplicata) {
+        toast.error(mensagem, {
+          position: "top-center",
+          autoClose: 5000,
+        });
+        return;
+      }
+
       const response = await axios.post(
         "http://localhost:8080/instituicao",
         formData
