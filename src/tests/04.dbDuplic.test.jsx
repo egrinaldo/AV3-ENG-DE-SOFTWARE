@@ -16,7 +16,7 @@ import { verificarDuplicata } from "../components/Functions/VerificaDuplicidade"
 
 describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', () => {
 
-    it('Será validado se o componente Form será renderizado', () => {
+    it('Será validado se não houver duplicidade com o banco de dados', () => {
         render(<Form />)
         
         const mockJSON = [
@@ -42,7 +42,7 @@ describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', (
           }
         ];
       
-        const novoJSON = {
+        const jsonDuplicado = {
           "id": 2,
           "escola": "Escola B",
           "cnpj": "9876543210001",
@@ -52,10 +52,24 @@ describe('VERIFICAÇÃO SE EXISTE CONTROLE DE DUPLICIDADE EM RELAÇÃO AO DB', (
           "tipoEscola": "Privada",
           "email": "escolaB@example.com"
         }
+
+        const jsonNovo = {
+          "id": 3,
+          "escola": "Escola C",
+          "cnpj": "6543219870001",
+          "bairro": "Bairro C",
+          "logradouro": "Rua 3",
+          "cep": "54321-876",
+          "tipoEscola": "Pública",
+          "email": "escolaC@example.com"
+        }
         
-        const resultado = verificarDuplicata(mockJSON, novoJSON)
-        expect(resultado.duplicata).toBe(true);
-        expect(resultado.mensagem).toBe("Escola já cadastrada");
+        const resultadoErrado = verificarDuplicata(mockJSON, jsonDuplicado)
+        expect(resultadoErrado.duplicata).toBe(true);
+        expect(resultadoErrado.mensagem).toBe("Escola já cadastrada");
+
+        const resultadoCerto = verificarDuplicata(mockJSON, jsonNovo)
+        expect(resultadoCerto.duplicata).toBe(false);
       })
 
     })
